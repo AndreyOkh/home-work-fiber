@@ -39,5 +39,10 @@ func (h *Handler) mainPage(c *fiber.Ctx) error {
 			{Path: "/other", Name: "#Прочее"},
 		},
 	}
+
+	h.log.Debug("Debug")
+	h.log.Info("Info")
+	h.log.Warn("Warn")
+	h.log.Error("Error")
 	return c.Render("category", content)
 }

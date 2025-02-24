@@ -31,6 +31,6 @@ func main() {
 	pages.NewHandler(app, loggerConfig)
 
 	if err := app.Listen(":3000"); err != nil {
-		panic(err)
+		loggerConfig.Error(err.Error())
 	}
 }

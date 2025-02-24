@@ -7,28 +7,31 @@ import (
 )
 
 func NewLogger(conf *config.LogConfig) *slog.Logger {
-	level := 0
-	switch conf.Level {
-	case "debug":
-		level = -4
-	case "info":
-		level = 0
-	case "warn":
-		level = 4
-	case "error":
-		level = 8
-	default:
-		slog.Info("Undefined log level, defaulting to info")
-		level = 0
-	}
-	slog.SetLogLoggerLevel(slog.Level(level))
+	lvl := new(slog.LevelVar)
 
+	var logger *slog.Logger
 	switch conf.Format {
 	case "text":
-		return slog.New(slog.NewTextHandler(os.Stdout, nil))
+		logger = slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: lvl}))
 	case "json":
-		return slog.New(slog.NewJSONHandler(os.Stdout, nil))
+		logger = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: lvl}))
 	default:
-		return slog.New(slog.NewJSONHandler(os.Stdout, nil))
+		logger = slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: lvl}))
 	}
+
+	switch conf.Level {
+	case "debug":
+		lvl.Set(slog.LevelDebug)
+	case "info":
+		lvl.Set(slog.LevelInfo)
+	case "warn":
+		lvl.Set(slog.LevelWarn)
+	case "error":
+		lvl.Set(slog.LevelError)
+	default:
+		slog.Info("Undefined log level, defaulting to info")
+		lvl.Set(slog.LevelInfo)
+	}
+
+	return logger
 }
