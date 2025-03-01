@@ -1,0 +1,44 @@
+package layout
+
+templ Footer() {
+	@FooterStyle()
+	<div class="footer">
+		<div class="container">
+			<a class="footer__link footer__link-text" href="#">Правила обработки персональных данных</a>
+			<p class="copyright footer__link-text">Все права защищены 2025</p>
+		</div>
+	</div>
+}
+
+templ FooterStyle() {
+	<style>
+		.footer {
+            max-width: 908px;
+            width: 50%;
+            margin: 45px 0;
+			background-color: #3E32320D;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+
+        }
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+        }
+		.footer__link-text {
+			color: #3E3232BF;
+			font-size: 12px;
+		}
+
+		.footer__link {
+			margin-left: 80px;
+            text-decoration: none;
+        }
+		.copyright {
+			margin-right: 1em;
+        }
+	</style>
+}

@@ -1,0 +1,169 @@
+package layout
+
+type Categories struct {
+	Href string
+	Name string
+}
+
+type HeaderProps struct {
+	Cats []Categories
+}
+
+templ Header(props *HeaderProps) {
+	@HeaderStyle()
+	<div class="header">
+		<div class="navbar">
+			<div class="navbar__left-buttons">
+				<a href="/" class="navbar__logo">Новости</a>
+				<div class="navbar__categories">
+					<button class="navbar__category navbar__category-all">Категории
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<ul class="navbar__category-list">
+						@HeaderCategoriesList(props.Cats)
+					</ul>
+				</div>
+				<a href="#" class="navbar__contacts navbar-link">Контакты</a>
+			</div>
+			<div class="navbar__right-buttons">
+				<a href="#" class="navbar__login navbar-link">Вход</a>
+				<a href="#" class="navbar__register navbar-link">Регистрация</a>
+			</div>
+		</div>
+
+		@HeaderCategoryCards(props.Cats)
+
+	</div>
+}
+
+templ HeaderCategoriesList(c []Categories) {
+	<li class="navbar__category-item">
+		for _, item := range c {
+		<a href={templ.SafeURL(item.Href)} class="navbar__category-link">#{ item.Name }</a>
+		}
+	</li>
+}
+
+templ HeaderCategoryCards(c []Categories) {
+	<div class="navbar__category-cards">
+		for _, item := range c {
+			<a href={templ.SafeURL(item.Href)} class="navbar__category-card">#{ item.Name }</a>
+		}
+	</div>
+}
+
+templ HeaderStyle() {
+	<style>
+        .header {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+            align-items: center;
+		}
+		.navbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			max-width: 1500px;
+			width: 90%;
+			margin: 45px 0;
+        }
+		.navbar__logo {
+			font-size: 20px;
+			color: var(--color-primary);
+			text-decoration: none;
+			font-weight: bold;
+		}
+		.navbar__left-buttons {
+			display: flex;
+			gap: 65px;
+		}
+		.navbar__categories {
+            float: left;
+            overflow: hidden;
+		}
+		.navbar__category {
+			background: none;
+			border: none;
+			font-size: 16px;
+            background-color: inherit;
+            font-family: inherit;
+            /*margin: 0;*/
+        }
+		.navbar__category:hover {
+            color: var(--color-primary);
+        }
+		.navbar__category-item a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+		}
+		.navbar-link {
+			text-decoration: none;
+			color: var(--color-black);
+        }
+        .navbar-link:hover {
+            color: var(--color-primary);
+        }
+		.navbar__category-item a {
+            float: none;
+            color: var(--color-black);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .navbar__category-list {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+		}
+		.navbar__category-list a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+		}
+		.navbar__category-list a:hover {
+            color: var(--color-primary);
+        }
+		.navbar__categories:hover .navbar__category-list {
+			display: block;
+		}
+		.navbar__right-buttons {
+			display: flex;
+			gap: 25px;
+		}
+
+		.navbar__category-cards {
+			max-width: 1500px;
+			width: 90%;
+			height: 70px;
+			background-color: #F5F5F5;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+            justify-content: space-evenly;
+		}
+        .navbar__category-card{
+			text-decoration: none;
+			font-size: 16px;
+			color: var(--color-white);
+            height: 48px;
+            width: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: silver;
+            border-radius: 12px;
+		}
+	</style>
+}

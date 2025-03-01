@@ -3,6 +3,8 @@ package pages
 import (
 	"github.com/gofiber/fiber/v2"
 	"log/slog"
+	"news/pkg/templ_adaptor"
+	"news/views"
 )
 
 type Handler struct {
@@ -28,17 +30,6 @@ func NewHandler(router fiber.Router, log *slog.Logger) {
 }
 
 func (h *Handler) mainPage(c *fiber.Ctx) error {
-	content := Content{
-		Categories: []Categories{
-			{Path: "/food", Name: "#Еда"},
-			{Path: "/animals", Name: "#Животные"},
-			{Path: "/cars", Name: "#Машины"},
-			{Path: "/sport", Name: "#Спорт"},
-			{Path: "/music", Name: "#Музыка"},
-			{Path: "/tech", Name: "#Технологии"},
-			{Path: "/other", Name: "#Прочее"},
-		},
-	}
-
-	return c.Render("category", content)
+	component := views.Main()
+	return templ_adaptor.Render(c, component)
 }

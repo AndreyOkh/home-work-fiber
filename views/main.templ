@@ -1,0 +1,54 @@
+package views
+
+import "news/views/layout"
+
+templ Main() {
+	@layout.Layout(layout.LayoutProps{
+	Title: "Новости",
+	MetaDescription: "Новостной сайт",
+	}) {
+	@Styles()
+
+	<main>
+		@layout.Header(&layout.HeaderProps{
+			Cats: []layout.Categories{
+				{Href: "#", Name: "Еда"},
+				{Href: "#", Name: "Животные"},
+				{Href: "#", Name: "Машины"},
+				{Href: "#", Name: "Спорт"},
+				{Href: "#", Name: "Музыка"},
+				{Href: "#", Name: "Технологии"},
+				{Href: "#", Name: "Прочее"},
+			},
+		})
+		<div>
+			<h3>Body</h3>
+		</div>
+		@layout.Footer()
+	</main>
+
+	}
+}
+
+templ Styles() {
+	<style>
+        :root {
+            --color-white: #fff;
+			--color-black: #3e3232;
+            --color-primary: #FC4308;
+
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+	</style>
+}
