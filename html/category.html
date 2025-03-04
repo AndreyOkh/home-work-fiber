@@ -1,0 +1,13 @@
+{{ template "base" . }}
+
+{{ define "title" }}
+  <title>Title</title>
+{{ end }}
+
+{{ define "content" }}
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-around; background-color: seashell; padding: 0.5em;">
+  {{ range .Categories }}
+    <a style="; padding: 0.5em 1.5em; background-color: silver; text-decoration: none; color: black" href="{{ .Path }}">{{ .Name }}</a>
+  {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,61 @@
+package components
+
+import "fmt"
+
+type BannerProps struct {
+	ImagePath string
+	Title string
+	Text string
+}
+
+css BackgroundImage(pathToImage string) {
+	background-image: {templ.SafeCSSProperty(fmt.Sprintf("url(%s)", pathToImage))};
+}
+
+templ SmallBanner(props BannerProps) {
+	@SmallBannerStyle(props.ImagePath)
+	<div class={ BackgroundImage(props.ImagePath), "banner-card" }>
+		<div class="banner-card_data">
+			<h3 class="banner-card_title">{props.Title}</h3>
+			<p class="banner-card_text">{props.Text}</p>
+		</div>
+	</div>
+}
+
+templ SmallBannerStyle(pathToImage string) {
+	<style>
+		.banner-card{
+			width: 360px;
+			height: 452px;
+			border-radius: 12px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+		}
+		.banner-card_data{
+			width: 339px;
+			height: 117px;
+			background-color: var(--color-white);
+			opacity: .75;
+			border-radius: 12px;
+			margin-bottom: 10px;
+			display: flex;
+			/*gap: 16px;*/
+			flex-direction: column;
+		}
+        .banner-card_title{
+			padding: 16px 16px;
+            margin: 0;
+			font-weight: 400;
+			font-size: 25px;
+			/*text-align: center;*/
+		}
+		.banner-card_text{
+			padding: 0 16px;
+			margin: 0;
+			font-weight: 400;
+			font-size: 14px;
+			opacity: .75;
+		}
+	</style>
+}

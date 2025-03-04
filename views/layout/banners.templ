@@ -1,0 +1,41 @@
+package layout
+
+import "news/views/components"
+
+templ BannersBlock() {
+	@BannersBlockStyle()
+	<div class="banners">
+		<div class="banners-small">
+			@components.SmallBanner(components.BannerProps{
+				ImagePath: "/public/images/05.png",
+				Title: "Как безопасно водить",
+				Text: "Длинный текст про то, как можно безопасно водить автомобиль.",
+			})
+			@components.SmallBanner(components.BannerProps{
+				ImagePath: "/public/images/08.png",
+				Title: "Создавай музыку!",
+				Text: "Сегодня мы рассмотрим технику быстрого создания музыки за счёт использования...",
+			})
+		</div>
+	</div>
+}
+
+templ BannersBlockStyle() {
+	<style>
+		.banners{
+			margin-top: 60px;
+            max-width: 1500px;
+            width: 90%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-direction: row;
+			gap: 24px;
+		}
+		.banners-small{
+			display: flex;
+			flex-direction: row;
+            gap: 24px;
+		}
+	</style>
+}
