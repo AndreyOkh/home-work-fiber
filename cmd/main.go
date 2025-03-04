@@ -26,7 +26,7 @@ func main() {
 
 	app.Use(recover.New())
 	app.Use(slogfiber.New(loggerConfig))
-
+	app.Static("/public", "./public")
 	pages.NewHandler(app, loggerConfig)
 
 	if err := app.Listen(":3000"); err != nil {

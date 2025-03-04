@@ -65,7 +65,7 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div><h3>Body</h3></div>")
+			templ_7745c5c3_Err = layout.BannersBlock().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -73,7 +73,7 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</main>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -111,7 +111,7 @@ func Styles() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n        :root {\n            --color-white: #fff;\n\t\t\t--color-black: #3e3232;\n            --color-primary: #FC4308;\n\n        }\n\n        body {\n            margin: 0;\n            padding: 0;\n            font-family: \"Roboto\", sans-serif;\n        }\n\n        * {\n            box-sizing: border-box;\n            -webkit-font-smoothing: antialiased;\n            -moz-osx-font-smoothing: grayscale;\n        }\n\t</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<style>\n        :root {\n            --color-white: #fff;\n\t\t\t--color-black: #3e3232;\n            --color-primary: #FC4308;\n\n        }\n\n        body {\n            margin: 0;\n            padding: 0;\n            font-family: \"Roboto\", sans-serif;\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n        }\n\n        * {\n            box-sizing: border-box;\n            -webkit-font-smoothing: antialiased;\n            -moz-osx-font-smoothing: grayscale;\n        }\n\n\t</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
