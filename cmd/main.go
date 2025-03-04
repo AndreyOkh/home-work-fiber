@@ -14,10 +14,9 @@ func main() {
 	config.Init()
 
 	logConfig := config.NewLogConfig()
-	dbConf := config.NewDatabaseConfig()
+	config.NewDatabaseConfig()
 
 	loggerConfig := logger.NewLogger(logConfig)
-	loggerConfig.Info("Database config", "dbConf", dbConf)
 
 	engine := html.New("./html", ".html")
 

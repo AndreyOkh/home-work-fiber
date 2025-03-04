@@ -50,16 +50,6 @@ func getIntEnv(key string, fallback int) int {
 	return fallback
 }
 
-//func getBoolEnv(key string, fallback bool) bool {
-//	if value := os.Getenv(key); value != "" {
-//		val, err := strconv.ParseBool(value)
-//		if err == nil {
-//			return val
-//		}
-//	}
-//	return fallback
-//}
-
 type LogConfig struct {
 	Level  string
 	Format string
