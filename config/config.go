@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func Init(confPath ...string) {
@@ -58,3 +59,15 @@ func getIntEnv(key string, fallback int) int {
 //	}
 //	return fallback
 //}
+
+type LogConfig struct {
+	Level  string
+	Format string
+}
+
+func NewLogConfig() *LogConfig {
+	return &LogConfig{
+		Level:  strings.ToLower(getStrEnv("LOG_LEVEL", "info")),
+		Format: strings.ToLower(getStrEnv("LOG_FORMAT", "json")),
+	}
+}
